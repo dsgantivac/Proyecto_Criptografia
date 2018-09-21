@@ -8,8 +8,56 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+  <style media="screen">
+    .row{
+      text-align: center;
+      width: 20%;
+      margin-bottom: 15px;
+      float: left;
+    }
+
+    .Nav_bar{
+      background-color: red;
+      width: 100%;
+    }
+
+    .link:hover{
+      text-decoration: underline;
+      background-color: inherit;
+    }
+
+    .link, .link:visited {
+      color: white;
+      font-size: 25px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+  </style>
 
   <body>
+    <div class="w3-center Nav_bar w3-container">
+      <ul>
+        <div class="row">
+          <%= link_to "Inicio", '/welcome/index', class: "link" %>
+        </div>
+        <div class="row">
+          <%= link_to "Articles", "/articles/", class: "link" %>
+        </div>
+        <div class="row">
+          <%= link_to "Create article", "/articles/", class: "link" %>
+        </div>
+        <div class="row">
+          <%= link_to "Sign in", '/users/new', class: "link" %>
+        </div>
+        <div class="row">
+          <%= link_to "Log in", '/users/new', class: "link" %>
+        </div>
+
+      </ul>
+    </div>
     <%= yield %>
   </body>
 </html>
