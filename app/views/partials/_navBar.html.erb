@@ -1,0 +1,76 @@
+<style media="screen">
+  .row{
+    text-align: center;
+    margin-bottom: 15px;
+    float: left;
+  }
+
+  .Nav_bar{
+    background-color: red;
+    width: 100%;
+  }
+
+  .link:hover{
+    text-decoration: underline;
+    background-color: inherit;
+  }
+
+  .link, .link:visited {
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+</style>
+
+<% if current_user %>
+<style media="screen">
+.row{
+  width: 25%;
+}
+</style>
+<% else %>
+<style media="screen">
+.row{
+  width: 33.3333%;
+}
+</style>
+
+
+<% end %>
+
+
+
+
+
+
+<div class="w3-center Nav_bar w3-container">
+  <ul>
+    <div class="row">
+      <%= link_to "Inicio", '/welcome/index', class: "link" %>
+    </div>
+    <% if current_user %>
+
+      <div class="row">
+        <%= link_to "Articles", "/articles/", class: "link" %>
+      </div>
+      <div class="row">
+        <%= link_to "Create article", "/articles/new", class: "link" %>
+      </div>
+
+      <div class="row">
+
+        <%= link_to "Log Out", session_path("current"), method: "delete", class: "link" %>
+      </div>
+
+    <% else %>
+      <div class="row">
+        <%= link_to "Sign Up", new_user_path, class: "link" %>
+      </div>
+      <div class="row">
+        <%= link_to "Log in", new_session_path, class: "link" %>
+      </div>
+    <% end %>
+  </ul>
+</div>
