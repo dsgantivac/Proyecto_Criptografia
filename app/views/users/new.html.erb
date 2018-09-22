@@ -1,5 +1,14 @@
-<h1>New User</h1>
+<div class="w3-center">
 
-<%= render 'form', user: @user %>
 
-<%= link_to 'Back', users_path %>
+  <h1>New User</h1>
+
+  <% if flash[:notice] %>
+      <div class="notice"><%= flash[:notice] %></div>
+    <% end %>
+
+  <%= render 'form', user: @user %>
+
+  <%= link_to 'Back', users_path %>
+
+</div>
