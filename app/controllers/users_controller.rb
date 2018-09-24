@@ -26,6 +26,9 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
+    @user.pin = (0...8).map { (65 + rand(26)).chr }.join
+
+     
     #raise params.to_yaml
       respond_to do |format|
         if @user.save && @user.password==  @user.conf_password

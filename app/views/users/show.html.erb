@@ -1,5 +1,10 @@
 <p id="notice"><%= notice %></p>
 
+<h1>
+  <strong>Pin:</strong>
+  <%= @user.pin %>
+</h1>
+
 <p>
   <strong>Email:</strong>
   <%= @user.email %>
@@ -19,6 +24,9 @@
   <strong>Name:</strong>
   <%= @user.name %>
 </p>
+
+
+
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

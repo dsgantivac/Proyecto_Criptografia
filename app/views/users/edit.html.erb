@@ -3,4 +3,8 @@
 <%= render 'form', user: @user %>
 
 <%= link_to 'Show', @user %> |
+
+  <h1 class="">
+    Your pin is <%=@user.pin %>
+  </h1>
 <%= link_to 'Back', users_path %>
