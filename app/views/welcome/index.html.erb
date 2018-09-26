@@ -1,1 +1,20 @@
 <h1>Ganti Carro Maestro</h1>
+
+<%=(0...64).map { (65 + rand(26)).chr }.join%>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<%
+  #va hasta 25
+  $i = 32
+  $num = 130
+
+  while $i < $num  do
+%>
+     <%="i = #$i"  %>     <%=($i).chr  %></br>
+<%     $i +=1
+  end
+%>
