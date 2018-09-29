@@ -1,5 +1,8 @@
+require "ruby-des/des.rb"
+
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
+
 
   # GET /articles
   # GET /articles.json
@@ -24,7 +27,10 @@ class ArticlesController < ApplicationController
   # POST /articles
   # POST /articles.json
   def create
+    @user = current_user
     @article = Article.new(article_params)
+    @article.user_id = @user.id
+    @article.body = encrypt(@article.body,@user.pin)
 
     respond_to do |format|
       if @article.save
@@ -69,6 +75,6 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:user_id, :title, :body)
+      params.require(:article).permit( :title, :body)
     end
 end
