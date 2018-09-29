@@ -4,7 +4,11 @@
 
 <p>
   <strong>User:</strong>
-  <%= @article.user %>
+    <%= @user.name %>
+</p>
+<p>
+  <strong>Body:</strong>
+  <%= @article.body %>
 </p>
 
 <p>
@@ -16,6 +20,8 @@
   <strong>Body:</strong>
   <%= @article.body %>
 </p>
+
+
 
 <%= link_to 'Edit', edit_article_path(@article) %> |
 <%= link_to 'Back', articles_path %>

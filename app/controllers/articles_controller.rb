@@ -7,12 +7,19 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.all
+    @user = current_user
+    @articles = Article.where(user_id: @user.id)
   end
 
   # GET /articles/1
   # GET /articles/1.json
   def show
+    @user = current_user
+    if @article.encryptType == 'DES'
+      @article.body = decrypt(@article.body,@user.pin)
+    elsif @article.encryptType == 'PolarCrypt'
+
+    end
   end
 
   # GET /articles/new
@@ -30,7 +37,11 @@ class ArticlesController < ApplicationController
     @user = current_user
     @article = Article.new(article_params)
     @article.user_id = @user.id
-    @article.body = encrypt(@article.body,@user.pin)
+    if @article.encryptType == 'DES'
+      @article.body = encrypt(@article.body,@user.pin)
+    elsif @article.encryptType == 'DES'
+
+    end
 
     respond_to do |format|
       if @article.save
@@ -71,10 +82,11 @@ class ArticlesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_article
       @article = Article.find(params[:id])
+      @user = User.find(current_user.id)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit( :title, :body)
+      params.require(:article).permit( :title, :body, :encryptType)
     end
 end

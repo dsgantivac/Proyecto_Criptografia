@@ -1,3 +1,9 @@
+<style media="screen">
+
+</style>
+
+
+
 <%= form_with(model: article, local: true) do |form| %>
   <% if article.errors.any? %>
     <div id="error_explanation">
@@ -21,6 +27,8 @@
     <%= form.label :body %>
     <%= form.text_area :body %>
   </div>
+
+  <%= form.select :encryptType, options_for_select([["DES", "DES"], "PolarCrypt"]), :class => 'genForm_dropBox' %>
 
   <div class="actions">
     <%= form.submit %>
