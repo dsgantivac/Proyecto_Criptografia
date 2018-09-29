@@ -1,4 +1,4 @@
-require "ruby-des/des.rb"
+require "DES/des.rb"
 
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
