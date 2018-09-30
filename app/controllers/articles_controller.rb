@@ -1,4 +1,5 @@
-require "DES/des.rb"
+require "Algorithms/des.rb"
+require "Algorithms/polarcrypt.rb"
 
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
@@ -18,7 +19,7 @@ class ArticlesController < ApplicationController
     if @article.encryptType == 'DES'
       @article.body = decrypt(@article.body,@user.pin)
     elsif @article.encryptType == 'PolarCrypt'
-
+      @article.body = decriptar(@article.body,@user.pin)
     end
   end
 
@@ -39,8 +40,8 @@ class ArticlesController < ApplicationController
     @article.user_id = @user.id
     if @article.encryptType == 'DES'
       @article.body = encrypt(@article.body,@user.pin)
-    elsif @article.encryptType == 'DES'
-
+    else
+      @article.body = encriptar(@article.body,@user.pin)
     end
 
     respond_to do |format|
