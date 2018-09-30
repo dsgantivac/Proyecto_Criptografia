@@ -8,18 +8,24 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @user = current_user
-    @articles = Article.where(user_id: @user.id)
+    if(current_user != nil)
+      @user = current_user
+      @articles = Article.where(user_id: @user.id)
+    else
+      @articles = []
+    end
   end
 
   # GET /articles/1
   # GET /articles/1.json
   def show
-    @user = current_user
-    if @article.encryptType == 'DES'
-      @article.body = decrypt(@article.body,@user.pin)
-    elsif @article.encryptType == 'PolarCrypt'
-      @article.body = decriptar(@article.body,@user.pin)
+    if(current_user != null)
+      @user = current_user
+      if @article.encryptType == 'DES'
+        @article.body = decrypt(@article.body,@user.pin)
+      elsif @article.encryptType == 'PolarCrypt'
+        @article.body = decriptar(@article.body,@user.pin)
+      end
     end
   end
 

@@ -1,5 +1,5 @@
 
 <!-- no ha iniciado sesion-->
 <% if !current_user %>
-  <% redirect_to '/users/new', notice: "debes inicias sesion" %>
+  <% redirect_to '/sessions/new', notice: "Please log in" %>
 <% end %>
