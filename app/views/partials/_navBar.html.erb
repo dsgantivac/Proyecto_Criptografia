@@ -36,13 +36,13 @@ body {
 <nav class="navbar navbar-inverse" style="border-radius: 0px;">
   <div class="container-fluid">
     <div class="navbar-header">
-      <%= link_to (raw('<span class="navbar-brand">WebSiteasName</span>')), "/welcome/index", class: "link" %>
+      <%= link_to (raw('<span class="navbar-brand"><b>🌈 Secret Diary 🦄</b></span>')), "/welcome/index", class: "link" %>
     </div>
     <ul class="nav navbar-nav">
       
       <% if current_user %>
-        <li><%= link_to "Articles", "/articles/", class: "link" %></li>
-        <li><%= link_to "Create article", "/articles/new", class: "link" %></li>
+        <li><%= link_to "🤫 Posts 🤫", "/articles/", class: "link" %></li>
+        <li><%= link_to "📝 Create post 📝", "/articles/new", class: "link" %></li>
       <% end %>
     </ul>
     <ul class="nav navbar-nav navbar-right">

@@ -19,7 +19,7 @@ class ArticlesController < ApplicationController
   # GET /articles/1
   # GET /articles/1.json
   def show
-    if(current_user != null)
+    if(current_user != nil)
       @user = current_user
       if @article.encryptType == 'DES'
         @article.body = decrypt(@article.body,@user.pin)
@@ -52,7 +52,7 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       if @article.save
-        format.html { redirect_to @article, notice: 'Article was successfully created.' }
+        format.html { redirect_to "/articles", notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @article }
       else
         format.html { render :new }
@@ -66,7 +66,7 @@ class ArticlesController < ApplicationController
   def update
     respond_to do |format|
       if @article.update(article_params)
-        format.html { redirect_to @article, notice: 'Article was successfully updated.' }
+        format.html { redirect_to "/articles", notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @article }
       else
         format.html { render :edit }
@@ -80,7 +80,7 @@ class ArticlesController < ApplicationController
   def destroy
     @article.destroy
     respond_to do |format|
-      format.html { redirect_to articles_url, notice: 'Article was successfully destroyed.' }
+      format.html { redirect_to articles_url, notice: 'Post was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

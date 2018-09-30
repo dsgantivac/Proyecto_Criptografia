@@ -2,7 +2,7 @@
 
 <% isValid %>
 
-<% content_for :title, "Log in" %>
+<% content_for :title, "Articles" %>
 
 <!DOCTYPE html>
 <html lang="en" >
@@ -14,101 +14,168 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 
   
-      <style>
-        @import url(https://fonts.googleapis.com/css?family=Open+Sans);
-        .btn { display: inline-block; *display: inline; *zoom: 1; padding: 4px 10px 4px; margin-bottom: 0; font-size: 13px; line-height: 18px; color: #333333; text-align: center;text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75); vertical-align: middle; background-color: #f5f5f5; background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6); background-image: -ms-linear-gradient(top, #ffffff, #e6e6e6); background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6)); background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6); background-image: -o-linear-gradient(top, #ffffff, #e6e6e6); background-image: linear-gradient(top, #ffffff, #e6e6e6); background-repeat: repeat-x; filter: progid:dximagetransform.microsoft.gradient(startColorstr=#ffffff, endColorstr=#e6e6e6, GradientType=0); border-color: #e6e6e6 #e6e6e6 #e6e6e6; border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25); border: 1px solid #e6e6e6; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); cursor: pointer; *margin-left: .3em; }
-        .btn:hover, .btn:active, .btn.active, .btn.disabled, .btn[disabled] { background-color: #e6e6e6; }
-        .btn-large { padding: 9px 14px; font-size: 15px; line-height: normal; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
-        .btn:hover { color: #333333; text-decoration: none; background-color: #e6e6e6; background-position: 0 -15px; -webkit-transition: background-position 0.1s linear; -moz-transition: background-position 0.1s linear; -ms-transition: background-position 0.1s linear; -o-transition: background-position 0.1s linear; transition: background-position 0.1s linear; }
-        .btn-primary, .btn-primary:hover { text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); color: #ffffff; }
-        .btn-primary.active { color: rgba(255, 255, 255, 0.75); }
-        .btn-primary { background-color: #4a77d4; background-image: -moz-linear-gradient(top, #6eb6de, #4a77d4); background-image: -ms-linear-gradient(top, #6eb6de, #4a77d4); background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#6eb6de), to(#4a77d4)); background-image: -webkit-linear-gradient(top, #6eb6de, #4a77d4); background-image: -o-linear-gradient(top, #6eb6de, #4a77d4); background-image: linear-gradient(top, #6eb6de, #4a77d4); background-repeat: repeat-x; filter: progid:dximagetransform.microsoft.gradient(startColorstr=#6eb6de, endColorstr=#4a77d4, GradientType=0);  border: 1px solid #3762bc; text-shadow: 1px 1px 1px rgba(0,0,0,0.4); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.5); }
-        .btn-primary:hover, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] { filter: none; background-color: #4a77d4; }
-        .btn-block { width: 100%; display:block; }
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+      .btn { display: inline-block; *display: inline; *zoom: 1; padding: 4px 10px 4px; margin-bottom: 0; font-size: 13px; line-height: 18px; color: #333333; text-align: center;text-shadow: 0 0px 0px rgba(255, 255, 255, 0.75); vertical-align: middle; background-color: #f5f5f5; background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6); background-image: -ms-linear-gradient(top, #ffffff, #e6e6e6); background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6)); background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6); background-image: -o-linear-gradient(top, #ffffff, #e6e6e6); background-image: linear-gradient(top, #ffffff, #e6e6e6); background-repeat: repeat-x; filter: progid:dximagetransform.microsoft.gradient(startColorstr=#ffffff, endColorstr=#e6e6e6, GradientType=0); border-color: #e6e6e6 #e6e6e6 #e6e6e6; border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25); border: 1px solid #e6e6e6; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); cursor: pointer; *margin-left: .3em; }
+      .btn:hover, .btn:active, .btn.active, .btn.disabled, .btn[disabled] { background-color: #e6e6e6; }
+      .btn-large { padding: 9px 14px; font-size: 15px; line-height: normal; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
+      .btn:hover { color: #333333; text-decoration: none; background-color: #e6e6e6; background-position: 0 -15px; -webkit-transition: background-position 0.1s linear; -moz-transition: background-position 0.1s linear; -ms-transition: background-position 0.1s linear; -o-transition: background-position 0.1s linear; transition: background-position 0.1s linear; }
+      .btn-primary, .btn-primary:hover { text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); color: #ffffff; }
+      .btn-primary.active { color: rgba(255, 255, 255, 0.75); }
+      .btn-primary { background-color: #4a77d4; background-image: -moz-linear-gradient(top, #6eb6de, #4a77d4); background-image: -ms-linear-gradient(top, #6eb6de, #4a77d4); background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#6eb6de), to(#4a77d4)); background-image: -webkit-linear-gradient(top, #6eb6de, #4a77d4); background-image: -o-linear-gradient(top, #6eb6de, #4a77d4); background-image: linear-gradient(top, #6eb6de, #4a77d4); background-repeat: repeat-x; filter: progid:dximagetransform.microsoft.gradient(startColorstr=#6eb6de, endColorstr=#4a77d4, GradientType=0);  border: 1px solid #3762bc; text-shadow: 1px 1px 1px rgba(0,0,0,0.4); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.5); }
+      .btn-primary:hover, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] { filter: none; background-color: #4a77d4; }
+      .btn-block { width: 100%; display:block; }
+      
+      * { -webkit-box-sizing:border-box; -moz-box-sizing:border-box; -ms-box-sizing:border-box; -o-box-sizing:border-box; box-sizing:border-box; }
+      
+      .showTable { 
+    	  margin: 40px;  
+    	  text-align:center;
+      }
+      .showTable h1 { color: #fff; text-shadow: 0 0 10px rgba(0,0,0,0.3); letter-spacing:1px; text-align:center; 
+      }
+      
+      .scrollTable{
+        overflow-y: scroll;
+        max-height: 430px;
+      }
+      
+      .table-fill {
+        border-radius:13px;
+        border-collapse: collapse;
+        margin: auto;
+        padding:5px;
+        width:100%;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        animation: float 5s infinite;
+        overflow-y: scroll;
+      }
+       
+      th {
+        color:#D5DDE5;;
+        background:rgba(27,30,36,0.5);
+        border-bottom:1px solid #9ea7af;
+        border-right: 1px solid #343a45;
+        font-size:18px;
+        font-weight: 100;
+        padding:24px;
+        text-align:center;
+        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+        vertical-align:middle;
+      }
         
-        * { -webkit-box-sizing:border-box; -moz-box-sizing:border-box; -ms-box-sizing:border-box; -o-box-sizing:border-box; box-sizing:border-box; }
-        
-        .login { 
-        	position: absolute;
-        	top: 50%;
-        	left: 50%;
-        	margin: -150px 0 0 -150px;
-        	width:300px;
-        	height:300px;
-        }
-        .login h1 { color: #fff; text-shadow: 0 0 10px rgba(0,0,0,0.3); letter-spacing:1px; text-align:center; }
-        
-        input { 
-        	width: 100%; 
-        	margin-bottom: 10px; 
-        	background: rgba(0,0,0,0.3);
-        	border: none;
-        	outline: none;
-        	padding: 10px;
-        	font-size: 13px;
-        	color: #fff;
-        	text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
-        	border: 1px solid rgba(0,0,0,0.3);
-        	border-radius: 4px;
-        	box-shadow: inset 0 -5px 45px rgba(100,100,100,0.2), 0 1px 1px rgba(255,255,255,0.2);
-        	-webkit-transition: box-shadow .5s ease;
-        	-moz-transition: box-shadow .5s ease;
-        	-o-transition: box-shadow .5s ease;
-        	-ms-transition: box-shadow .5s ease;
-        	transition: box-shadow .5s ease;
-        }
-        input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgba(255,255,255,0.2); }
+      th:first-child {
+        border-top-left-radius:6px;
+      }
+       
+      th:last-child {
+        border-top-right-radius:6px;
+        border-right:none;
+      }
 
+      tr {
+        border-top: 1px solid #C1C3D1;
+        border-bottom-: 1px solid #C1C3D1;
+        color:#666B85;
+        font-size:10px;
+        font-weight:normal;
+        text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
+      }
+       
+      td {
+        background:#FFFFFF;
+        padding:20px;
+        text-align:left;
+        vertical-align:middle;
+        font-weight:300;
+        font-size:14px;
+        text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+        border-right: 1px solid #C1C3D1;
+      }
+            
+      tr:nth-child(odd) td {
+        background:#EBEBEB;
+      }
+       
+      tr:first-child {
+        border-top:none;
+      }
+      
+      .delButton {
+        background: #c0392b;
+        color: #fff;
+        border: 1px;
+      }
+      
+      .showButton {
+        background: #5fcf80;
+        color: #fff;
+        border: 1px;
+      }
+      
+      .newButton {
+        background: #5fcf80;
+        color: #fff;
+        border: 1px;
+        font-size: 16px;
+        padding: 15px 30px 15px 30px;
+        align-self: flex-end;
+      }
+      
+      .editButton {
+        background: #3399db;
+        color: #fff;
+        border: 1px;
+      }
     </style>
 
 </head>
 
 <body>
 
-  <div class="login">
-	<h1>Log in</h1>
-    <%= form_tag sessions_path do %>
-      <%= text_field_tag :email, params[:email], placeholder: "e-Mail" %>
-      <%= password_field_tag :password, "", placeholder: "Password"%>
-      <button type="submit" class="btn btn-primary btn-block btn-large"><%= "Let me in" %></button>
-    <% end %>
+  <div class="showTable">
+	<h1><b><font face="segoe">📜️</font> POSTS <font face="segoe">📜️</font> </b></h1>
+  	<div class="scrollTable">
+      <table class="table-fill">
+        <thead>
+          <tr>
+            <th>Your name ♥</th>
+            <th>Date</th>
+            <th>Content</th>
+            <th colspan="3">Actions</th>
+          </tr>
+        </thead>
+      
+        <tbody>
+          <% @articles.each do |article| %>
+            <tr>
+              <td><%= article.user.name %></td>
+              <td><%= article.title %></td>
+              <td><%= article.body[0,60] %></td>
+              <td style="text-align:center"><%= button_to 'Show 👀', article, :method => :get, :class => "btn showButton" %></td>
+              <td style="text-align:center"><%= button_to 'Edit 🤔', edit_article_path(article), :method => :get, :class => "btn editButton" %></td>
+              <td style="text-align:center"><%= button_to 'Destroy 🔥️', article, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn delButton" %></td>
+            </tr>
+  
+  
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <div style="text-align: right">
+    <%= button_to 'New Post', new_article_path, :method => :get, :class => "btn newButton" %>
+    </div>
   </div>
 
   <script  src="js/index.js"></script>
 
+  <script>
+    setTimeout(function() {
+      $('.alert-info').fadeOut('slow');
+  }, 2000);
+  </script>
+
 </body>
 
 </html>
-
-
-<p id="notice"><%= notice %></p>
-
-<h1>Articles</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Title</th>
-      <th>Body</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @articles.each do |article| %>
-      <tr>
-        <td><%= article.user.name %></td>
-        <td><%= article.title %></td>
-        <td><%= article.body %></td>
-        <td><%= link_to 'Show', article %></td>
-        <td><%= link_to 'Edit', edit_article_path(article) %></td>
-        <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Article', new_article_path %>
