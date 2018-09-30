@@ -151,7 +151,7 @@
             <tr>
               <td><%= article.user.name %></td>
               <td><%= article.title %></td>
-              <td><%= article.body[0,60] %></td>
+              <td><%= article.body[0,50] %></td>
               <td style="text-align:center"><%= button_to 'Show 👀', article, :method => :get, :class => "btn showButton" %></td>
               <td style="text-align:center"><%= button_to 'Edit 🤔', edit_article_path(article), :method => :get, :class => "btn editButton" %></td>
               <td style="text-align:center"><%= button_to 'Destroy 🔥️', article, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn delButton" %></td>
