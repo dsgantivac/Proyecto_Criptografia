@@ -22,7 +22,7 @@ puts 'Llenando'
     if ran <=3
       text=Faker::HarryPotter.quote.sub("’", "'").to_s.force_encoding("ASCII-8BIT")
     elsif ran <=6
-      text=Faker::ChuckNorris.fact.sub("’", "'").to_s.force_encoding("ASCII-8BIT")
+      text=Faker::VForVendetta.speech.sub("’", "'").to_s.force_encoding("ASCII-8BIT")
     else
       text=Faker::ChuckNorris.fact.sub("’", "'").to_s.force_encoding("ASCII-8BIT")
     end 
