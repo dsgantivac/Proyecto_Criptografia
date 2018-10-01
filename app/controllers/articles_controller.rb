@@ -23,7 +23,7 @@ class ArticlesController < ApplicationController
       @user = current_user
       if @article.encryptType == 'DES'
         @article.body = decrypt(@article.body,@user.pin)
-      elsif @article.encryptType == 'PolarCrypt'
+      else
         @article.body = decriptar(@article.body,@user.pin)
       end
     end
@@ -36,6 +36,14 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1/edit
   def edit
+    if(current_user != nil)
+      @user = current_user
+      if @article.encryptType == 'DES'
+        @article.body = decrypt(@article.body,@user.pin)
+      else
+        @article.body = decriptar(@article.body,@user.pin)
+      end
+    end
   end
 
   # POST /articles
@@ -64,8 +72,16 @@ class ArticlesController < ApplicationController
   # PATCH/PUT /articles/1
   # PATCH/PUT /articles/1.json
   def update
+    body=""
+    @user = current_user
+    if article_params["encryptType"] == 'DES'
+      body = encrypt(article_params["body"],@user.pin)
+    else
+      body = encriptar(article_params["body"],@user.pin)
+    end
+    
     respond_to do |format|
-      if @article.update(article_params)
+      if @article.update({"title"=>article_params["title"], "body"=>body, "encryptType"=>article_params["encryptType"]})
         format.html { redirect_to "/articles", notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @article }
       else

@@ -123,7 +123,7 @@
     
       <%= form.text_field :title, placeholder: "📅 Date 📅" %>
       <%= form.text_area :body, :class => "bodyText", placeholder: "What happened? 😱 😱" %>
-      <%= form.select :encryptType, options_for_select([["🔐 DES 🔐", "DES"], "☃️ PolarCrypt ☃️"])%>
+      <%= form.select :encryptType, options_for_select([["🔐 DES 🔐", "DES"], ["☃️ PolarCrypt ☃️","PolarCrypt"]])%>
       <br><br>
       <button type="submit" class="btn btn-primary btn-block btn-large"><%= "Post" %></button>
       

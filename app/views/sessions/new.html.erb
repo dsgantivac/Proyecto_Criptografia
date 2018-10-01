@@ -1,5 +1,11 @@
 <% content_for :title, "Log in" %>
 
+<% if current_user %>
+  <script type="text/javascript">
+    window.location.href='/articles'
+  </script>
+<% end %>
+
 <!DOCTYPE html>
 <html lang="en" >
 
