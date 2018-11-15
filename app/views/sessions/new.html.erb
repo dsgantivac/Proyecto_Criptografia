@@ -72,12 +72,63 @@
     <%= form_tag sessions_path do %>
       <%= text_field_tag :email, params[:email], placeholder: "e-Mail 📧" %>
       <%= password_field_tag :password, "", placeholder: "Password 🔑️"%>
-      <button type="submit" class="btn btn-primary btn-block btn-large"><%= "Let me in 🔓" %></button>
+      <%= hidden_field_tag 'cipherPass', '1'  %>
+      <button id="submit" type="button" class="btn btn-primary btn-block btn-large"><%= "Let me in 🔓" %></button>
     <% end %>
   </div>
+  <script
+			  src="https://code.jquery.com/jquery-3.3.1.min.js"
+			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous">
+  </script>
+  <script>
+    
 
-  <script  src="js/index.js"></script>
+    $(document).ready(function(){
+        
+      var fastModularExponentiation = function(a, b, n) {
+        a = a % n;
+        var result = 1;
+        var x = a;
+      
+        while(b > 0){
+          var leastSignificantBit = b % 2;
+          b = Math.floor(b / 2);
+      
+          if (leastSignificantBit == 1) {
+            result = result * x;
+            result = result % n;
+          }
+      
+          x = x * x;
+          x = x % n;
+        }
+        return result;
+      };
+      $('#submit').click(function(){
+          console.log("click");
+          var str = "";
+          var pass = $('#password').val();
+          pass=pass.match(/.{1,1}/g);
+          console.log(pass);
+          for (i=0;i< pass.length;i++){
+            pass[i]=pass[i].charCodeAt(0);
+            pass[i]=fastModularExponentiation(pass[i], localStorage.getItem('key1'), localStorage.getItem('key2'));
+            str = str + pass[i];
+            if(i<pass.length-1)
+            {
+              str = str + ",";
+            }
+          };
+          $('#cipherPass').val(str);
+          console.log(str);
+          Rails.fire($('form')[0], 'submit');
+          
+        })
+      console.log("hola");
+    })
 
+  </script>
 </body>
 
 </html>
