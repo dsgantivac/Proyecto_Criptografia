@@ -8,10 +8,10 @@
 <head>
   <meta charset="UTF-8">
   <title>Login Form</title>
-  
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 
-  
+
       <style>
         @import url(https://fonts.googleapis.com/css?family=Open+Sans);
         .btn { display: inline-block; *display: inline; *zoom: 1; padding: 4px 10px 4px; margin-bottom: 0; font-size: 13px; line-height: 18px; color: #333333; text-align: center;text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75); vertical-align: middle; background-color: #f5f5f5; background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6); background-image: -ms-linear-gradient(top, #ffffff, #e6e6e6); background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6)); background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6); background-image: -o-linear-gradient(top, #ffffff, #e6e6e6); background-image: linear-gradient(top, #ffffff, #e6e6e6); background-repeat: repeat-x; filter: progid:dximagetransform.microsoft.gradient(startColorstr=#ffffff, endColorstr=#e6e6e6, GradientType=0); border-color: #e6e6e6 #e6e6e6 #e6e6e6; border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25); border: 1px solid #e6e6e6; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); cursor: pointer; *margin-left: .3em; }
@@ -23,10 +23,10 @@
         .btn-primary { background-color: #4a77d4; background-image: -moz-linear-gradient(top, #6eb6de, #4a77d4); background-image: -ms-linear-gradient(top, #6eb6de, #4a77d4); background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#6eb6de), to(#4a77d4)); background-image: -webkit-linear-gradient(top, #6eb6de, #4a77d4); background-image: -o-linear-gradient(top, #6eb6de, #4a77d4); background-image: linear-gradient(top, #6eb6de, #4a77d4); background-repeat: repeat-x; filter: progid:dximagetransform.microsoft.gradient(startColorstr=#6eb6de, endColorstr=#4a77d4, GradientType=0);  border: 1px solid #3762bc; text-shadow: 1px 1px 1px rgba(0,0,0,0.4); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.5); }
         .btn-primary:hover, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] { filter: none; background-color: #4a77d4; }
         .btn-block { width: 100%; display:block; }
-        
+
         * { -webkit-box-sizing:border-box; -moz-box-sizing:border-box; -ms-box-sizing:border-box; -o-box-sizing:border-box; box-sizing:border-box; }
-        
-        .login { 
+
+        .login {
         	position: absolute;
         	top: 50%;
         	left: 45%;
@@ -57,16 +57,28 @@
 
   <div class="login">
 	<h1>📅 <%= @article.title %> 📅</h1>
-    
+
     <p style="font-size:15px">
       <strong>👩‍💻 User 💃 </strong><br>
-        <%= @user.name %>  💁🏻‍ <br><br>
+        <%= @user %>  💁🏻‍ <br><br>
+        pin: <%= @pin %>  💁🏻‍ <br><br>
+        pin desencriptado: <%= rsa_decrypt(@pin, 3978851, 5475599) %>  💁🏻‍ <br><br>
+
       <strong>🤫 Message 🤫</strong><br>
-      <%= @article.body %><br>
+      <%
+        if @article.encryptType == 'DES'
+           article = decrypt(@article.body,rsa_decrypt(@pin, 3978851, 5475599))
+         else
+           article = decriptar(@article.body,rsa_decrypt(@pin, 3978851, 5475599))
+         end
+      %>
+
+      <%= article%><br>
+
     </p>
-    
+
     <div style="float:left; width:50%;">
-      <%= button_to 'Edit', edit_article_path(@article), :method => :get, :class => "btn editButton"  %> 
+      <%= button_to 'Edit', edit_article_path(@article), :method => :get, :class => "btn editButton"  %>
     </div>
 
     <div style="float:left; width:50%;">
@@ -80,5 +92,3 @@
 </body>
 
 </html>
-
-

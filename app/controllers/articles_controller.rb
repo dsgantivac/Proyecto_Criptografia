@@ -1,5 +1,6 @@
 require "Algorithms/des.rb"
 require "Algorithms/polarcrypt.rb"
+require "Algorithms/RSA2.rb"
 
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
@@ -20,12 +21,10 @@ class ArticlesController < ApplicationController
   # GET /articles/1.json
   def show
     if(current_user != nil)
-      @user = current_user
-      if @article.encryptType == 'DES'
-        @article.body = decrypt(@article.body,@user.pin)
-      else
-        @article.body = decriptar(@article.body,@user.pin)
-      end
+      @user = current_user.name
+      @pin = rsa_encrypt(current_user.pin,11,5475599)
+      @article
+
     end
   end
 
@@ -52,8 +51,10 @@ class ArticlesController < ApplicationController
     @user = current_user
     @article = Article.new(article_params)
     @article.user_id = @user.id
+
     if @article.encryptType == 'DES'
-      @article.body = encrypt(@article.body,@user.pin)
+
+      @article.body = encrypt(@article.body.force_encoding('ASCII-8BIT'),@user.pin)
     else
       @article.body = encriptar(@article.body,@user.pin)
     end
@@ -79,7 +80,7 @@ class ArticlesController < ApplicationController
     else
       body = encriptar(article_params["body"],@user.pin)
     end
-    
+
     respond_to do |format|
       if @article.update({"title"=>article_params["title"], "body"=>body, "encryptType"=>article_params["encryptType"]})
         format.html { redirect_to "/articles", notice: 'Post was successfully updated.' }

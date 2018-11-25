@@ -1,4 +1,7 @@
 require "src/isValid.rb"
+require "Algorithms/des.rb"
+require "Algorithms/polarcrypt.rb"
+require "Algorithms/RSA2.rb"
 
 class ApplicationController < ActionController::Base
 
@@ -10,7 +13,9 @@ class ApplicationController < ActionController::Base
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
-  
+
+
+
 
   helper_method :current_user
   helper_method :isValid
