@@ -1,3 +1,24 @@
+# generate keys
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#............................................................
+
 #convert number to string
 def n_to_s( n )
   s = ""
@@ -54,3 +75,8 @@ def rsa_decrypt(array,d,n)
     m.push(n_to_s(tmp))
   end
 end
+
+
+
+
+

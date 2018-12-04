@@ -69,6 +69,7 @@
 
   <div class="login">
 	<h1><font face="segoe">😜️</font> Log in  <font face="segoe">😉️</font></h1>
+    <h1> <%= @keys %> </h1>
     <%= form_tag sessions_path do %>
       <%= text_field_tag :email, params[:email], placeholder: "e-Mail 📧" %>
       <%= password_field_tag :password, "", placeholder: "Password 🔑️"%>
