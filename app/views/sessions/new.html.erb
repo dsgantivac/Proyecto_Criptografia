@@ -74,9 +74,37 @@
       <%= text_field_tag :email, params[:email], placeholder: "e-Mail 📧" %>
       <%= password_field_tag :password, "", placeholder: "Password 🔑️"%>
       <%= hidden_field_tag 'cipherPass', '1'  %>
+
       <button id="submit" type="button" class="btn btn-primary btn-block btn-large"><%= "Let me in 🔓" %></button>
     <% end %>
   </div>
+
+
+  <li id="key1" value=<%= @key1 %>></li>
+  <li id="key2" value=<%= @key2 %>></li>
+  <li id="auxd" value=<%= @auxd %>></li>
+
+  <script>
+      setTimeout(function() {
+          $('.alert-info').fadeOut('slow');
+      }, 2000);
+  </script>
+  <% if !current_user %>
+  <script type="text/javascript">
+      $(document).ready(function(){
+          console.log("hola");
+          localStorage.setItem("key1", $('#key1').val());
+          localStorage.setItem("key2", $('#key2').val());
+          localStorage.setItem("auxd", $('#auxd').val());
+          console.log(localStorage);
+      })
+  </script>
+<% end %>
+
+
+
+
+
   <script
 			  src="https://code.jquery.com/jquery-3.3.1.min.js"
 			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="

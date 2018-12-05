@@ -1,20 +1,2 @@
 <% content_for :title, "Secret Diary" %>
-<li id="key1" value=<%= @key1 %>></li>
-<li id="key2" value=<%= @key2 %>></li>
 
-  <script>
-    setTimeout(function() {
-      $('.alert-info').fadeOut('slow');
-  }, 2000);
-  </script>
-  <% if !current_user %>
-  <script type="text/javascript">
-    $(document).ready(function(){
-      console.log("hola");
-      localStorage.setItem("key1", $('#key1').val());
-      localStorage.setItem("key2", $('#key2').val());
-      console.log(localStorage);
-    })
-  </script>
-<% end %>
-  

@@ -5,9 +5,13 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(email: params[:email])
-    @d = inv_mod(3,3220)
+   # @d = inv_mod(3,3220)
+    print("aiuda:",$gd, "\n")
+    print("aiuda2:",$gn, "\n")
+
     @arr = params[:cipherPass].split(",")
-    @decipher = decryptRsa(@arr,@d,3337)
+    print("el arreglo:", @arr,"\n")
+    @decipher = decryptRsa(@arr,$gd,$gn)
     if user && user.password == params[:password]
       if @decipher == params[:password]
         session[:user_id] = user.id
@@ -21,7 +25,21 @@ class SessionsController < ApplicationController
   end
 
   def new
-    @keys = generate_keys()
+    @keyaux = generate_keys()
+    @auxd=@keyaux[1]
+    @auxn=@keyaux[2]
+    @key1=@keyaux[0]
+    @key2=@keyaux[2]
+    $gd=@keyaux[1]
+    $gn=@keyaux[2]
+    $phic =@keyaux[3]
+    print("aiudad:",$gd, "\n")
+    print("aiudan:",$gn, "\n")
+    print("aiudae:",@key1, "\n")
+    print("phic:",$phic, "\n")
+
+
+
   end
 
   def destroy

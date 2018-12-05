@@ -21,22 +21,24 @@ class ApplicationController < ActionController::Base
     primes = prime_numbers((rand(503)))
     p = primes[-1]
     q = primes[-2]
+    puts p
+    puts q
     n = p*q
     phi = (p-1)*(q-1)
     e = e_finder(phi)
     d = inv_mod(e, phi)
     
-    return [e,d,n]
+    return [e,d,n,phi]
   end
 
   def prime_numbers(n)
     i = 2
-    primes = []
-    while primes.size < n do
-      primes << i if is_prime?(i)
+    @primes = []
+    while @primes.size < n do
+      @primes << i if is_prime?(i)
       i += 1
     end
-    primes
+    @primes
   end
   
   def e_finder(a)
@@ -66,11 +68,8 @@ class ApplicationController < ActionController::Base
   end
 
   def is_prime?(n)
-    if n%2 == 0
-      return true
-    else
-     return false
-    end
+    @primes.each { |prime| return false if n % prime == 0 }
+    true
   end
  
 #............................................................ 

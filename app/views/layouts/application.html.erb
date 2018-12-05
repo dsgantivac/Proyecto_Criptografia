@@ -1,7 +1,10 @@
+
+
 <!DOCTYPE html>
 <html>
   <head>
     <title><%= yield(:title) %></title>
+    <meta charset="utf-8">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -17,8 +20,8 @@
 
 
     <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, class: "alert alert-info" %>
+        <%= content_tag :div, msg.force_encoding(Encoding::UTF_8), class: "alert alert-info" %>
     <% end %>
-    <%= yield %>
+    <%= yield%>
   </body>
 </html>

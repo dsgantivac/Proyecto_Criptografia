@@ -18,8 +18,8 @@ def s_to_n( s )
   end
   n
 end
-
-def mod_pow( base, power, mod )
+#
+def mod_poww( base, power, mod )
   res = 1
   while power > 0
     res = (res * base) % mod if power & 1 == 1
@@ -44,7 +44,7 @@ def rsa_encrypt(m,e,n)
   m = []
   array.each do |group|
     tmp = s_to_n(group)
-    m.push(mod_pow( tmp, e, n ))
+    m.push(mod_poww( tmp, e, n ))
   end
   m
 end
@@ -52,7 +52,7 @@ end
 def rsa_decrypt(array,d,n)
   m = []
   array.each do |group|
-    tmp = mod_pow( group, d, n )
+    tmp = mod_poww( group, d, n )
     m.push(n_to_s(tmp))
   end
 

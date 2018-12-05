@@ -19,6 +19,7 @@ def n_to_s( n )
   
   def mod_pow( base, power, mod )
     res = 1
+
     while power > 0
       res = (res * base) % mod if power & 1 == 1
       base = base ** 2 % mod
@@ -73,8 +74,10 @@ def n_to_s( n )
   
   def decryptRsa(array,d,n)
     m = ""
+    print("power:",d, "\n")
     array.each do |group|
         group = group.to_i
+
       tmp = mod_pow( group, d, n )
       m = m+n_to_s(tmp)
     end
