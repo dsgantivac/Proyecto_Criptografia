@@ -21,8 +21,8 @@ class ApplicationController < ActionController::Base
     primes = prime_numbers((rand(503)))
     p = primes[-1]
     q = primes[-2]
-    puts p
-    puts q
+    #puts p
+    #puts q
     n = p*q
     phi = (p-1)*(q-1)
     e = e_finder(phi)

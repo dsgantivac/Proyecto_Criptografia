@@ -6,8 +6,8 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:email])
    # @d = inv_mod(3,3220)
-    print("aiuda:",$gd, "\n")
-    print("aiuda2:",$gn, "\n")
+   # print("aiuda:",$gd, "\n")
+    #print("aiuda2:",$gn, "\n")
 
     @arr = params[:cipherPass].split(",")
     print("el arreglo:", @arr,"\n")
@@ -33,10 +33,10 @@ class SessionsController < ApplicationController
     $gd=@keyaux[1]
     $gn=@keyaux[2]
     $phic =@keyaux[3]
-    print("aiudad:",$gd, "\n")
-    print("aiudan:",$gn, "\n")
-    print("aiudae:",@key1, "\n")
-    print("phic:",$phic, "\n")
+    # print("aiudad:",$gd, "\n")
+    # print("aiudan:",$gn, "\n")
+    # print("aiudae:",@key1, "\n")
+    # print("phic:",$phic, "\n")
 
 
 
