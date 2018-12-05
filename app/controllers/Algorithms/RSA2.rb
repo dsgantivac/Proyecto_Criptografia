@@ -1,23 +1,4 @@
-# generate keys
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#............................................................
 
 #convert number to string
 def n_to_s( n )
@@ -74,6 +55,8 @@ def rsa_decrypt(array,d,n)
     tmp = mod_pow( group, d, n )
     m.push(n_to_s(tmp))
   end
+
+  return m.map { |k| "#{k}" }.join("")
 end
 
 

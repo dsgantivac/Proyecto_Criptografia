@@ -62,15 +62,23 @@
       <strong>👩‍💻 User 💃 </strong><br>
         <%= @user %>  💁🏻‍ <br><br>
         pin: <%= @pin %>  💁🏻‍ <br><br>
+        pin2: <%= @pin2 %>  💁🏻‍ <br><br>
         pin desencriptado: <%= rsa_decrypt(@pin, 3978851, 5475599) %>  💁🏻‍ <br><br>
 
       <strong>🤫 Message 🤫</strong><br>
       <%
+        
+        #key = article = rsa_decrypt(@pin, 3978851, 5475599)
+        key = @pin2
         if @article.encryptType == 'DES'
-           article = decrypt(@article.body,rsa_decrypt(@pin, 3978851, 5475599))
+
+          article = decrypt(@article.body,key)
+         
          else
-           article = decriptar(@article.body,rsa_decrypt(@pin, 3978851, 5475599))
+          article = decriptar(@article.body,key)
+         
          end
+
       %>
 
       <%= article%><br>

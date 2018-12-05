@@ -1,7 +1,7 @@
 require "src/isValid.rb"
 require "Algorithms/des.rb"
 require "Algorithms/polarcrypt.rb"
-#require "Algorithms/RSA2.rb"
+require "Algorithms/RSA2.rb"
 
 class ApplicationController < ActionController::Base
 

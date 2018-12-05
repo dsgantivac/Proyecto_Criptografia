@@ -23,6 +23,7 @@ class ArticlesController < ApplicationController
     if(current_user != nil)
       @user = current_user.name
       @pin = rsa_encrypt(current_user.pin,11,5475599)
+      @pin2 = current_user.pin
       @article
 
     end
@@ -53,7 +54,6 @@ class ArticlesController < ApplicationController
     @article.user_id = @user.id
 
     if @article.encryptType == 'DES'
-
       @article.body = encrypt(@article.body.force_encoding('ASCII-8BIT'),@user.pin)
     else
       @article.body = encriptar(@article.body,@user.pin)
