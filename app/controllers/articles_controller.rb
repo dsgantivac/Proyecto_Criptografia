@@ -22,7 +22,9 @@ class ArticlesController < ApplicationController
   def show
     if(current_user != nil)
       @user = current_user.name
-      @pin = rsa_encrypt(current_user.pin,11,5475599)
+      @key = generate_keys()
+      #@pin = rsa_encrypt(current_user.pin,11,5475599)
+      @pin = rsa_encrypt(current_user.pin,@key[0],@key[2])
       @pin2 = current_user.pin
       @article
 

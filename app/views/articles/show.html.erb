@@ -63,7 +63,8 @@
         <%= @user %>  💁🏻‍ <br><br>
         pin: <%= @pin %>  💁🏻‍ <br><br>
         pin2: <%= @pin2 %>  💁🏻‍ <br><br>
-        pin desencriptado: <%= rsa_decrypt(@pin, 3978851, 5475599) %>  💁🏻‍ <br><br>
+        key: <%= @key %>  💁🏻‍ <br><br>
+        pin desencriptado: <%= rsa_decrypt(@pin, @key[1], @key[2]).force_encoding('UTF-8') %>  💁🏻‍ <br><br>
 
       <strong>🤫 Message 🤫</strong><br>
       <%
@@ -75,7 +76,7 @@
           article = decrypt(@article.body,key)
          
          else
-          article = decriptar(@article.body,key)
+          article = decriptar(@article.body,key).force_encoding('UTF-8')
          
          end
 

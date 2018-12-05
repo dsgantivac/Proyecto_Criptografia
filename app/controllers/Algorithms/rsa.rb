@@ -69,16 +69,7 @@ def n_to_s( n )
       
   end
   
-  def encrypt(m,e,n)
-    array = [m]
-    array = array.first.chars.each_slice(2).to_a.map(&:join)
-    m = []
-    array.each do |group|
-      tmp = s_to_n(group)
-      m.push(mod_pow( tmp, e, n ))
-    end
-    m
-  end
+ 
   
   def decryptRsa(array,d,n)
     m = ""
