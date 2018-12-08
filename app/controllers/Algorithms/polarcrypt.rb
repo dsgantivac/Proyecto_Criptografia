@@ -1,7 +1,9 @@
+# encoding: utf-8
+Encoding.default_external = Encoding::UTF_8
 
 def caesar_cipher(string)
   shiftyArray = []
-  charLine = string.chars.map(&:ord)
+  charLine = string.chars.map{ |ch| ch.ord }
 
   shift = 1
   4.times do |shift|
@@ -16,12 +18,11 @@ end
 
 def caesar_decipher(string)
   shiftyArray = []
-  charLine = string.chars.map(&:ord)
-  
+  charLine = string.chars.map{ |ch| ch.ord }
   shift = 1
   4.times do |shift|
     shiftyArray = charLine.map do |c|
-      ((c - shift) >= 0 ? (c - shift) : (c - shift) + 255).chr
+      ((c - shift) >= 0 ? (c - shift) : (c - shift) + 255).chr(Encoding::UTF_8)
     end.join
   end
 
@@ -63,7 +64,7 @@ end
 def toText(string)
 	txtArray = []
 	string.each_entry do |c|
-			txtArray << c.chr
+			txtArray << c.chr(Encoding::UTF_8)
 	end
 	txtArray
 end
