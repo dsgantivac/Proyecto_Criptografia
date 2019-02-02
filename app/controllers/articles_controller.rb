@@ -41,7 +41,7 @@ class ArticlesController < ApplicationController
     if(current_user != nil)
       @user = current_user
       if @article.encryptType == 'DES'
-        @article.body = decrypt(@article.body,@user.pin)
+        @article.body = decrypt(@article.body.force_encoding('UTF-8'),@user.pin)
       else
         @article.body = decriptar(@article.body,@user.pin)
       end
@@ -78,7 +78,7 @@ class ArticlesController < ApplicationController
     body=""
     @user = current_user
     if article_params["encryptType"] == 'DES'
-      body = encrypt(article_params["body"],@user.pin)
+      body = encrypt(article_params["body"].force_encoding('UTF-8'),@user.pin)
     else
       body = encriptar(article_params["body"],@user.pin)
     end
