@@ -56,7 +56,7 @@ class ArticlesController < ApplicationController
     @article.user_id = @user.id
 
     if @article.encryptType == 'DES'
-      @article.body = encrypt(@article.body.force_encoding('ASCII-8BIT'),@user.pin)
+      @article.body = encrypt(@article.body.force_encoding('UTF-8'),@user.pin)
     else
       @article.body = encriptar(@article.body,@user.pin)
     end
