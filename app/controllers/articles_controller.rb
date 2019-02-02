@@ -78,13 +78,13 @@ class ArticlesController < ApplicationController
     body=""
     @user = current_user
     if article_params["encryptType"] == 'DES'
-      body = encrypt(article_params["body"].force_encoding('UTF-8'),@user.pin)
+      body = encrypt(article_params["body"],@user.pin)
     else
       body = encriptar(article_params["body"],@user.pin)
     end
 
     respond_to do |format|
-      if @article.update({"title"=>article_params["title"], "body"=>body, "encryptType"=>article_params["encryptType"]})
+      if @article.update({"title"=>article_params["title"], "body"=>body.force_encoding('UTF-8'), "encryptType"=>article_params["encryptType"]})
         format.html { redirect_to "/articles", notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @article }
       else
