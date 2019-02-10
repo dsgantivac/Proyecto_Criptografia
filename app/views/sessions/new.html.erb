@@ -92,11 +92,9 @@
   <% if !current_user %>
   <script type="text/javascript">
       $(document).ready(function(){
-          console.log("hola");
           localStorage.setItem("key1", $('#key1').val());
           localStorage.setItem("key2", $('#key2').val());
-
-          console.log(localStorage);
+zz
       })
   </script>
 <% end %>
@@ -135,11 +133,9 @@
         return result;
       };
       $('#submit').click(function(){
-          console.log("click");
           var str = "";
           var pass = $('#password').val();
           pass=pass.match(/.{1,1}/g);
-          console.log(pass);
           for (i=0;i< pass.length;i++){
             pass[i]=pass[i].charCodeAt(0);
             pass[i]=fastModularExponentiation(pass[i], localStorage.getItem('key1'), localStorage.getItem('key2'));
@@ -150,11 +146,9 @@
             }
           };
           $('#cipherPass').val(str);
-          console.log(str);
           Rails.fire($('form')[0], 'submit');
           
         })
-      console.log("hola");
     })
 
   </script>
