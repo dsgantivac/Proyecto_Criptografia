@@ -20,14 +20,19 @@ class ArticlesController < ApplicationController
   # GET /articles/1
   # GET /articles/1.json
   def show
-    if(current_user != nil)
+    if(current_user != nil && current_user.id == @article.user_id)
       @user = current_user.name
       @key = generate_keys()
       #@pin = rsa_encrypt(current_user.pin,11,5475599)
       @pin = rsa_encrypt(current_user.pin,@key[0],@key[2])
       @pin2 = current_user.pin
       @article
-
+    else
+      respond_to do |format|
+        format.html { redirect_to '/articles'}
+        flash[:notice] = 'Hey, don\'t gossip!'
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
     end
   end
 
