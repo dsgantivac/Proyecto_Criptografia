@@ -2,30 +2,26 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   #skip_before_action :authorize, only: [:new,:created,:index]
   #function to validate email
-  def is_a_valid_email?(email)
-    email_regex = %r{
-      ^ # Start of string
-      [0-9a-z] # First character
-      [0-9a-z.+]+ # Middle characters
-      [0-9a-z] # Last character
-      @ # Separating @ character
-      [0-9a-z] # Domain name begin
-      [0-9a-z.-]+ # Domain name middle
-      [0-9a-z] # Domain name end
-      $ # End of string
-    }xi # Case insensitive
-
-    (email =~ email_regex)
+  def is_a_valid_pass?(pass)
+  	pass_regex =  /^(?=.*\d)(?=.*([a-z]|[A-Z]))([\x20-\x7E]){8,40}$/
+  
+  	return (pass_regex.match(pass))? true : false
   end
   
-  def is_a_valid_pass?(ṕass)
-    pass_regex = %r{
-      ^ # Start of string
-      (?=.*[a-zA-Z])(?=.*[0-9]).{8,}
-      $ # End of string
-    }
-
-    (pass =~ pass_regex)
+  def is_a_valid_email?(email)
+  	email_regex = %r{
+  		^ # Start of string
+  		[0-9a-z] # First character
+  		[0-9a-z.+]+ # Middle characters
+  		[0-9a-z] # Last character
+  		@ # Separating @ character
+  		[0-9a-z] # Domain name begin
+  		[0-9a-z.-]+ # Domain name middle
+  		[0-9a-z] # Domain name end
+  		$ # End of string
+  	}xi # Case insensitive
+  
+  	return (email_regex.match(email))? true : false
   end
   
   # GET /users
@@ -57,12 +53,24 @@ class UsersController < ApplicationController
      
     #raise params.to_yaml
       respond_to do |format|
-        if @user.save && @user.password == @user.conf_password
+        if @user.password == @user.conf_password
           if(is_a_valid_email?(@user.email))
             if(is_a_valid_pass?(@user.password))
-              session[:user_id] = @user.id
-              format.html { redirect_to '/articles', notice: 'User was successfully created and logging Succesfully' }
-              format.json { render :show, status: :created, location: @user }
+              begin
+                if @user.save
+                  session[:user_id] = @user.id
+                  format.html { redirect_to '/articles', notice: 'User was successfully created and logging Succesfully' }
+                  format.json { render :show, status: :created, location: @user }
+                else
+                  format.html { redirect_to '/users/new'}
+                  flash[:notice] = 'Error: Email already registered'
+                  format.json { render json: @user.errors, status: :unprocessable_entity }
+                end
+              rescue ActiveRecord::RecordNotUnique
+                format.html { redirect_to '/users/new'}
+                flash[:notice] = 'Error: Email already registered'
+                format.json { render json: @user.errors, status: :unprocessable_entity }
+              end
             else
               format.html { redirect_to '/users/new'}
               flash[:notice] = 'Password must contain at least a lowercase letter, a uppercase, a digit and 8+ chars'

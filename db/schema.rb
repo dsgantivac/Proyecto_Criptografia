@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 2018_09_29_184351) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "pin"
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
 end
